@@ -4,7 +4,7 @@ import random
 #Function that returns random artist from given genre as parameter
 def randomArtistFromGenre(genre):
     # Opening JSON file 
-    f = open('static/genres.json',) 
+    f = open('spotify/static/genres.json',) 
     
     # returns JSON object as  
     # a dictionary 

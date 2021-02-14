@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import render_template
-from file import *
 
-app = Flask(__name__)
+from spotify import app
+from spotify.file import *
+from spotify.auth import *
+
 
 @app.route('/')
 def hello_world():
