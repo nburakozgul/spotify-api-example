@@ -1,0 +1,12 @@
+{
+	"rock": ["jimi hendrix", "led zeppelin", "muse", "scorpions", "queen", "audioslave"],
+	"alternative rock": ["arctic monkeys", "the black keys", "royal blood"],
+	"pop": ["michael jackson", "madonna", "elvis presley", "tarkan"],
+	"blues": ["muddy waters", "b.b. king", "robert johnson"],
+	"country": ["johnny cash", "hank williams"],
+	"electronic": ["daft punk", "the chemical brothers", "moby", "the prodigy", "fatboy slim"],
+	"jazz": ["louis armstrong", "miles davis", "duke ellington"],
+	"r&b": ["stevie wonder", "sam cooke", "alicia keys", "whitney houston"],
+	"rap": ["eminem", "2pac", "the notorious b.i.g."],
+	"reggae": ["bob marley", "jimmy cliff", "peter tosh"]
+}
