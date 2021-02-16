@@ -3,23 +3,47 @@ import json
 
 from spotify import app
 
-CLIENT_ID = "2a8c1ebe32df454d9edebf3788132b7b";
-CLIENT_SECRET = "73e074701aed43f0a3e9e27d3fb5a01d";
+CLIENT_ID = "";
+CLIENT_SECRET = ""; #do not share your client_secret again 
 
 TOKEN_URL = "https://accounts.spotify.com/api/token";
+SEARCH_URL = "https://api.spotify.com/v1/search";
+ARTIST_URL = "https://api.spotify.com/v1/artists/{}/top-tracks";
 
+#basic auth that returns access token
 def auth():
     data = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'grant_type': 'client_credentials',
     }
 
-    # `auth=(CLIENT_ID, SECRET)` basically wraps an 'Authorization'
-    # header with value:
-    # b'Basic ' + b64encode((CLIENT_ID + ':' + SECRET).encode())
     res = requests.post(TOKEN_URL, auth=(CLIENT_ID, CLIENT_SECRET), data=data)
     res_data = res.json()
 
     access_token = res_data.get('access_token')
 
     return access_token
+
+#returns artist search result as json
+def getArtist(artist,access_token):
+    hearders = headers = {
+        "Authorization": "Bearer " + access_token
+    }
+    params = { 'q': artist, 'type': 'artist' }
+
+    artist_info = requests.get(SEARCH_URL,headers=hearders,params=params)
+
+    return artist_info.json()
+
+#top tracks of artist
+def getTopTracksOfArtist(artist_id,access_token):
+    
+    hearders = headers = {
+        "Authorization": "Bearer " + access_token
+    }
+
+    params = { 'market': 'TR' }
+
+    artist_info = requests.get(ARTIST_URL.format(artist_id),headers=hearders,params=params)
+
+    return artist_info.json()

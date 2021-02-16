@@ -1,7 +1,25 @@
 <!doctype html>
-<title>Hello from Flask</title>
-{% if artist %}
-  <h1>This is {{ artist }}!</h1>
+<title>Top Tracks of Artist</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% if data %}
+  <h1 style="text-align: center;">{{ data.artist_name }}</h1>
+  <table style="width: 800px;" class="center">
+    <tr>
+      <th></th>
+      <th>Track Name</th>
+      <th>Album Name</th>
+      <th>Release Date</th>
+    </tr>
+    <tr>
+    {% for item in data['songs']%}
+    <tr>
+      <th><img src={{item.album_cover.url}} alt="" border=3 height={{item.height}} width={{item.width}}></img></th>
+      <th>{{item.track_name}}</th>
+      <th>{{item.album_name}}</th>
+      <th>{{item.release_date}}</th>
+    </tr>
+    {% endfor%}
+  </table>
 {% else %}
   <h1>No artist found!!</h1>
 {% endif %}
