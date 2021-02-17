@@ -21,7 +21,6 @@ def auth():
     res_data = res.json()
 
     access_token = res_data.get('access_token')
-
     return access_token
 
 #returns artist search result as json
@@ -32,6 +31,9 @@ def getArtist(artist,access_token):
     params = { 'q': artist, 'type': 'artist' }
 
     artist_info = requests.get(SEARCH_URL,headers=hearders,params=params)
+    if not artist_info:
+        access_token = auth()
+        artist_info = requests.get(SEARCH_URL,headers=hearders,params=params)
 
     return artist_info.json()
 
@@ -44,6 +46,9 @@ def getTopTracksOfArtist(artist_id,access_token):
 
     params = { 'market': 'TR' }
 
-    artist_info = requests.get(ARTIST_URL.format(artist_id),headers=hearders,params=params)
+    top_tracks = requests.get(ARTIST_URL.format(artist_id),headers=hearders,params=params)
+    if not top_tracks:
+        access_token = auth()
+        top_tracks = requests.get(SEARCH_URL,headers=hearders,params=params)
 
-    return artist_info.json()
+    return top_tracks.json()

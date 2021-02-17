@@ -13,4 +13,7 @@ def randomArtistFromGenre(genre):
     # Closing file 
     f.close() 
 
-    return random.choice(data[genre])
+    if genre in data:
+        return random.choice(data[genre])
+    else:
+        return None

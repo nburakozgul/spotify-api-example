@@ -1,9 +1,15 @@
 <!doctype html>
 <title>Top Tracks of Artist</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-{% if data %}
-  <h1 style="text-align: center;">{{ data.artist_name }}</h1>
-  <table style="width: 800px;" class="center">
+<div>
+  <div class="center">
+    <input type="text" id="genre" class="form-control" placeholder="Genre" aria-label="Search">
+    <button type="button" id="id_button" class="btn btn-primary" onclick="onClick()">Search</button>
+  </div>
+</div>
+{% if not data.error_message %}
+  <h1 class="center">{{ data.artist_name }}</h1>
+  <table style="width: 800px;" class="center-table">
     <tr>
       <th></th>
       <th>Track Name</th>
@@ -21,5 +27,13 @@
     {% endfor%}
   </table>
 {% else %}
-  <h1>No artist found!!</h1>
+  <h1 class="center">{{data.error_message}}</h1>
 {% endif %}
+
+<script>
+  function onClick() {
+    var genreName = document.getElementById("genre").value;
+    window.location.href = "/genre/"+ genreName;
+     //yok olmadi
+  }
+</script>

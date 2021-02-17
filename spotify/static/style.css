@@ -3,7 +3,18 @@ border: 1px solid black;
 border-collapse: collapse;
 }
 
-.center {
+.center-table {
 margin-left: auto;
 margin-right: auto;
+}
+
+.center{
+    justify-content: center;
+    display: flex;
+    text-align: center;
+}
+
+.center div{
+    width: 50%;
+    margin: auto;
 }
