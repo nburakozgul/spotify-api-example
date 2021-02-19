@@ -11,6 +11,8 @@ N = 5 #number of the top songs
 
 @app.route('/') #open datatable with only search bar ?
 def root():
+    global ACCESS_TOKEN
+    
     if not ACCESS_TOKEN: 
         ACCESS_TOKEN = auth()
     return 'Hello, World!'
