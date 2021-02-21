@@ -1,5 +1,6 @@
 import requests
 import json
+from os import path
 
 from spotify import app
 
@@ -9,6 +10,13 @@ CLIENT_SECRET = ""; #do not share your client_secret again
 TOKEN_URL = "https://accounts.spotify.com/api/token";
 SEARCH_URL = "https://api.spotify.com/v1/search";
 ARTIST_URL = "https://api.spotify.com/v1/artists/{}/top-tracks";
+
+spotify_file_name = "spotify_credentials.txt"
+if path.exists(spotify_file_name):
+    with open(spotify_file_name) as f:
+        lines = f.readlines()
+        CLIENT_ID = lines[0].strip()
+        CLIENT_SECRET = lines[1].strip()
 
 #basic auth that returns access token
 def auth():

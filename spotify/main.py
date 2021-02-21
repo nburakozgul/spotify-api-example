@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template,url_for,redirect
 
 from spotify import app
 from spotify.file import *
@@ -15,7 +15,7 @@ def root():
     
     if not ACCESS_TOKEN: 
         ACCESS_TOKEN = auth()
-    return 'Hello, World!'
+    return redirect(url_for('genre',genre='rock'))
 
 @app.route('/genre/')
 @app.route('/genre/<genre>')
@@ -34,8 +34,6 @@ def genre(genre=None):
     artist_info = getArtist(artist,ACCESS_TOKEN)
     if not artist_info:
         return render_template('datatable.html', data={"error_message":AUTH_ERROR_MESSAGE})
-
-    print(artist_info)
         
     if artist_info['artists']['total'] != 0:
         artist_id = artist_info['artists']['items'][0]['id'] #id of the first artist from the search
