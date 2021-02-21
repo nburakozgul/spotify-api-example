@@ -3,7 +3,7 @@ Spotify API Client Credentials Example
 
 ## How to run
 
-Create a project folder and a venv folder within:
+On project folder run this comment to create a venv folder:
 
 ### `python3 -m venv venv`
 
